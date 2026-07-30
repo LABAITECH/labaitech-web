@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Personaliza a cor da seleção de texto para o verde neon da LabAI */
+::selection {
+  background-color: #00C853;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #00C853;
+  color: #ffffff;
+}
+
+:root {
+  background-color: #5B36D6;
+  color: #ffffff;
+}
+
+body {
+  background-color: #5B36D6;
+  color: #ffffff;
+}
