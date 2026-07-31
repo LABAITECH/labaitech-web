@@ -221,7 +221,7 @@ export default function LabAIHome() {
               Entre em contato conosco diretamente pelo e-mail:
             </p>
             <span className="text-sm font-bold text-labai-green tracking-wide">
-              contato@labaitech.com
+              contato@labai-tech.com
             </span>
           </div>
 
