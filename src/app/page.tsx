@@ -1,14 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { 
   LineChart, 
   ArrowRight, 
   Lightbulb, 
   Brain, 
   LayoutGrid, 
-  Rocket, 
-  Building2,
-  Mail, 
-  MessageSquare,
+  Rocket,
+  Mail,
 } from "lucide-react";
 
 const projetos = [
@@ -17,13 +18,26 @@ const projetos = [
     nome: "FinanceLab",
     descricao: "Inteligência Artificial atuando como seu assistente de investimentos. Avaliação contínua de indicadores fundamentalistas e visão macroeconômica integrada via Open Finance.",
     icone: LineChart,
-    link: "https://labaitech.com/financelab",
+    link: "https://financelabbrasilai.github.io/financelab/",
     status: "ativo",
     textoAcao: "Acessar Plataforma",
   }
 ];
 
 export default function LabAIHome() {
+  const [copied, setCopied] = useState(false);
+  const contactEmail = "contato@labai-tech.com";
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactEmail);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
+
   return (
     <main className="min-h-screen font-sans selection:bg-labai-green selection:text-white bg-labai-light text-labai-dark">
       
@@ -205,83 +219,47 @@ export default function LabAIHome() {
         </div>
       </section>
 
-      {/* 3. SEÇÃO: CONTATO (Fundo branco, botão roxo e focado apenas em e-mail) */}
+      {/* 3. SEÇÃO: CONTATO */}
       <section id="contato" className="relative py-32 px-6 bg-[#ffffff]">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row bg-white rounded-3xl shadow-2xl overflow-hidden relative z-10 text-gray-900">
-          
-          {/* Painel Esquerdo - Informações (Focado em E-mail) */}
-          <div className="bg-[#5B36D6] text-white p-12 md:w-1/3 flex flex-col items-center justify-center text-center">
-            <h3 className="text-sm font-bold tracking-[0.2em] mb-8 leading-relaxed">
-              INFORMAÇÕES<br/>DE CONTATO
-            </h3>
-            <div className="w-14 h-14 rounded-full border-2 border-white/20 flex items-center justify-center mb-6">
-              <Mail className="w-6 h-6 text-white" />
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#5B36D6] p-8 shadow-[0_24px_80px_rgba(91,54,214,0.35)] md:p-12">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.18),transparent_35%)]" />
+            <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-xl space-y-5 text-white">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+                    <Mail className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/75">Contato</p>
+                    <h3 className="mt-1 text-2xl font-bold md:text-3xl">Entre em contato</h3>
+                  </div>
+                </div>
+
+                <p className="max-w-md text-sm leading-relaxed text-white/80 md:text-base">
+                  Estamos abertos para parcerias, investimentos, propostas comerciais e oportunidades de colaboração.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                aria-live="polite"
+                onClick={handleCopyEmail}
+                className="group w-full rounded-[1.5rem] border border-white/20 bg-white/8 px-5 py-4 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/12 hover:shadow-[0_12px_32px_rgba(17,10,43,0.2)] md:w-auto md:min-w-[390px]"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/70">E-mail</p>
+                    <p className="mt-2 truncate text-lg font-semibold text-white md:text-xl">{contactEmail}</p>
+                  </div>
+
+                  <span className="inline-flex shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/90 transition-colors group-hover:bg-[#00C853]/20 group-hover:text-[#D9FFE8]">
+                    {copied ? "Copiado" : "Copiar"}
+                  </span>
+                </div>
+              </button>
             </div>
-            <p className="text-sm font-light text-white/90 mb-4">
-              Entre em contato conosco diretamente pelo e-mail:
-            </p>
-            <span className="text-sm font-bold text-labai-green tracking-wide">
-              contato@labai-tech.com
-            </span>
           </div>
-
-          {/* Painel Direito - Formulário com fundo branco */}
-          <div className="p-12 md:w-2/3 bg-white">
-            <form className="space-y-6">
-              
-              {/* Linha 1: Nome e Sobrenome */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-[#5B36D6]">Nome *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Ex. João" 
-                    className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#5B36D6] bg-transparent text-sm text-gray-900 placeholder-gray-400" 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-[#5B36D6]">Sobrenome *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Ex. Silva" 
-                    className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#5B36D6] bg-transparent text-sm text-gray-900 placeholder-gray-400" 
-                  />
-                </div>
-              </div>
-
-              {/* Linha 2: E-mail */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-[#5B36D6]">E-mail *</label>
-                <input 
-                  type="email" 
-                  placeholder="Ex. joao@email.com" 
-                  className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#5B36D6] bg-transparent text-sm text-gray-900 placeholder-gray-400" 
-                />
-              </div>
-
-              {/* Linha 3: Mensagem */}
-              <div className="space-y-2 pt-2">
-                <label className="text-xs font-bold text-[#5B36D6]">Mensagem *</label>
-                <textarea 
-                  rows={4} 
-                  placeholder="Escreva sua mensagem aqui..." 
-                  className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#5B36D6] bg-transparent text-sm text-gray-900 placeholder-gray-400 resize-none"
-                ></textarea>
-              </div>
-
-              {/* Botão de Envio (Roxo) */}
-              <div className="flex justify-end pt-4">
-                <button 
-                  type="submit" 
-                  className="bg-[#5B36D6] text-white text-xs font-bold tracking-wider px-8 py-3.5 rounded-full hover:bg-[#4c2bb8] transition-all shadow-lg shadow-[#5B36D6]/20"
-                >
-                  ENVIAR MENSAGEM
-                </button>
-              </div>
-
-            </form>
-          </div>
-
         </div>
       </section>
 
