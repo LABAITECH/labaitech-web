@@ -18,7 +18,7 @@ const projetos = [
     nome: "FinanceLab",
     descricao: "Inteligência Artificial atuando como seu assistente de investimentos. Avaliação contínua de indicadores fundamentalistas e visão macroeconômica integrada via Open Finance.",
     icone: LineChart,
-    link: "https://financelabbrasilai.github.io/financelab/",
+    link: "https://www.labai-tech.com/financelab/",
     status: "ativo",
     textoAcao: "Acessar Plataforma",
   }
